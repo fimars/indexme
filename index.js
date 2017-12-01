@@ -37,7 +37,7 @@ function glob(filepath) {
 }
 
 function glob_file(filepath) {
-  return path.relative(cwd, filepath);
+  return path.relative(cwd, filepath) || filepath;
 }
 
 function glob_dir(dirpath) {
