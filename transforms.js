@@ -9,7 +9,7 @@ const transforms = {
       return `- [${path.basename(filepath)}](${filepath})`;
     }
   },
-  ["default"]: {
+  ["pure"]: {
     uiversal: function(filepath) {
       return `${path.basename(filepath)}`;
     }

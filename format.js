@@ -2,6 +2,7 @@ const transforms = require("./transforms");
 
 function Formatter(mode) {
   const transform = transforms[mode];
+  if (!transform) throw new Error("unknow mode: " + mode);
   if (transform.uiversal) {
     this.transform_dir = transform.uiversal;
     this.transform_file = transform.uiversal;

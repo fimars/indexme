@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const program = require("commander");
 const path = require("path");
 const indexme = require("../");
@@ -7,16 +9,17 @@ function list(val = "") {
 }
 
 program
-  .version("0.1.0")
+  .version("0.1.1")
   .usage("[options] path")
   .option("-i, --ignore [globs]", "A ignore list")
+  .option("-m, --mode [value]", "markdown[default], pure")
   .parse(process.argv);
 
 const opts = {
-  ignore: list(program.ignore)
+  ignore: list(program.ignore),
+  mode: program.mode
 };
 
 const dirpath = path.join(process.cwd(), program.args[0] || "");
 
-console.log(dirpath);
 console.log(indexme(dirpath, opts));
