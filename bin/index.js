@@ -20,6 +20,10 @@ const opts = {
   mode: program.mode
 };
 
-const dirpath = path.join(process.cwd(), program.args[0] || "");
-
-console.log(indexme(dirpath, opts));
+try {
+  const dirpath = path.join(process.cwd(), program.args[0] || "");
+  console.log(indexme(dirpath, opts));
+}
+catch(e) {
+  console.log(e.message)
+}

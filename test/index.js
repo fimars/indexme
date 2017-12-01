@@ -12,7 +12,7 @@ test("doesn't exist dir", t => {
     indexme("./unknowpath");
   }, Error);
 
-  t.is(error.message, "path doesn't exist");
+  t.is(error.message, "[ERROR] path doesn\'t exist: ./unknowpath");
 });
 
 test("indexme here", t => {

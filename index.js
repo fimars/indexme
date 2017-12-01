@@ -13,7 +13,7 @@ function indexme(filepath, opts = {}) {
   ignore = ignore.concat(opts.ignore);
 
   if (!fs.existsSync(filepath)) {
-    throw new Error("path doesn't exist: " + filepath);
+    throw new Error("[ERROR] path doesn't exist: " + filepath);
   }
   return format(glob(filepath), mode);
 }
