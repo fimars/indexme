@@ -16,6 +16,7 @@ npm install indexme -g
 
     -V, --version         output the version number
     -i, --ignore [globs]  A ignore list
+    -m, --mode [value]    markdown[default], pure
     -h, --help            output usage information
 
 ```
