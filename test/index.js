@@ -47,6 +47,22 @@ test("pure mode", t => {
   );
 });
 
+test("tree mode", t => {
+  const res = indexme(resolve("./priv"), { mode: "tree" });
+  t.deepEqual(
+    res,
+    `
+└── priv
+    ├── 1.md
+    ├── 2.md
+    ├── 3.md
+    └── inner
+        ├── inner1.md
+        └── inner2.md
+  `.trim()
+  );
+});
+
 test("ingore", t => {
   const res = indexme(resolve("./priv"), { ignore: ["inner*"] });
   t.deepEqual(

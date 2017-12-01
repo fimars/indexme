@@ -12,7 +12,7 @@ program
   .version("0.1.5")
   .usage("[options] path")
   .option("-i, --ignore [globs]", "A ignore list")
-  .option("-m, --mode [value]", "markdown[default], pure")
+  .option("-m, --mode [value]", "markdown[default], pure, tree")
   .parse(process.argv);
 
 const opts = {

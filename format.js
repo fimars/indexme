@@ -16,23 +16,19 @@ function Formatter(mode) {
  * @param {Object, String} node
  * @param {Number} deep
  */
-Formatter.prototype.format = function(node, deep = 0) {
+Formatter.prototype.format = function(node, deep = 0, last = true) {
   if (typeof node === "object") {
     let dirs = "";
-    dirs += leftpad(deep, this.transform_dir(node.path));
+    dirs += this.transform_dir(node.path, deep, last);
     if (node.children.length) {
       dirs += "\n";
-      dirs += node.children.map(node => this.format(node, deep + 1)).join("\n");
+      dirs += node.children.map((node, idx, arr) => this.format(node, deep + 1, idx === arr.length - 1)).join("\n");
     }
     return dirs;
   } else {
-    return leftpad(deep, this.transform_file(node));
+    return this.transform_file(node, deep, last);
   }
 };
-
-function leftpad(n, str) {
-  return " ".repeat(n * 2) + str;
-}
 
 exports = module.exports = function format(glob, mode) {
   return new Formatter(mode).format(glob);
