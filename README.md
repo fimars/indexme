@@ -16,7 +16,7 @@ npm install indexme -g
 
     -V, --version         output the version number
     -i, --ignore [globs]  A ignore list
-    -m, --mode [value]    markdown[default], pure
+    -m, --mode [value]    markdown[default], pure, tree
     -h, --help            output usage information
 
 ```
@@ -30,7 +30,7 @@ npm install indexme -g
 
 **Tree your node.js project.**
 ```bash
-➔ indexme -i _*,.*,node_modules -m pure
+➔ indexme -i _*,.*,node_modules -m tree
 ```
 
 Enjoy! :heart:
