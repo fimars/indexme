@@ -9,7 +9,7 @@ function list(val = "") {
 }
 
 program
-  .version("0.1.4")
+  .version("0.1.5")
   .usage("[options] path")
   .option("-i, --ignore [globs]", "A ignore list")
   .option("-m, --mode [value]", "markdown[default], pure")
