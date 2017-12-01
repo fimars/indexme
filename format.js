@@ -19,18 +19,18 @@ function Formatter(mode) {
 Formatter.prototype.format = function(node, deep = 0) {
   if (typeof node === "object") {
     let dirs = "";
-    dirs += leftpad(deep, this.transform_dir(node.path));
+    dirs += leftpadSpace(deep, this.transform_dir(node.path));
     if (node.children.length) {
       dirs += "\n";
       dirs += node.children.map(node => this.format(node, deep + 1)).join("\n");
     }
     return dirs;
   } else {
-    return leftpad(deep, this.transform_file(node));
+    return leftpadSpace(deep, this.transform_file(node));
   }
 };
 
-function leftpad(n, str) {
+function leftpadSpace(n, str) {
   return " ".repeat(n * 2) + str;
 }
 
