@@ -1,25 +1,28 @@
-const path = require("path");
+const basename = require("path").basename;
 
 const transforms = {
   ["markdown"]: {
     dir: leftpadByDeep(2, function(filepath) {
-      return `- ${path.basename(filepath)}`;
+      return `- ${basename(filepath)}`;
     }),
     file: leftpadByDeep(2, function(filepath) {
-      return `- [${path.basename(filepath)}](${filepath})`;
+      return `- [${basename(filepath)}](${filepath})`;
     })
   },
   ["pure"]: {
     dir: leftpadByDeep(2, function(filepath) {
-      return `- ${path.basename(filepath)}/`;
+      return `- ${basename(filepath)}/`;
     }),
     file: leftpadByDeep(2, function(filepath) {
-      return `${path.basename(filepath)}`;
+      return `${basename(filepath)}`;
     })
   },
   ["tree"]: {
-    uiversal: leftpadByDeep(4, function(filepath, last) {
-      return `${last ? '└' : '├'}── ${path.basename(filepath)}`;
+    file: leftpadByDeep(4, function(filepath, last) {
+      return `${last ? '└' : '├'}── ${basename(filepath)}`;
+    }),
+    dir: leftpadByDeep(4, function(filepath, last) {
+      return `└── ${basename(filepath)}`;
     })
   },
 };

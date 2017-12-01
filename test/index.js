@@ -27,6 +27,8 @@ test("indexme here", t => {
   - inner
     - [inner1.md](test/priv/inner/inner1.md)
     - [inner2.md](test/priv/inner/inner2.md)
+  - inner2
+    - [1.md](test/priv/inner2/1.md)
     `.trim()
   );
 });
@@ -43,6 +45,8 @@ test("pure mode", t => {
   - inner/
     inner1.md
     inner2.md
+  - inner2/
+    1.md
     `.trim()
   );
 });
@@ -59,6 +63,8 @@ test("tree mode", t => {
     └── inner
         ├── inner1.md
         └── inner2.md
+    └── inner2
+        └── 1.md
   `.trim()
   );
 });
