@@ -1,7 +1,11 @@
 ## Index ME!
 Like windows-trees, but more format.
 
-### CLI
+### Installtion
+```bash
+npm install indexme -g
+```
+### Useage
 ```bash
 ➔ indexme --help
 
@@ -14,6 +18,13 @@ Like windows-trees, but more format.
     -i, --ignore [globs]  A ignore list
     -h, --help            output usage information
 
+```
+
+### Recipes
+
+Index your markdown notes.
+```bash
+index notes -i README.md > notes/README.md
 ```
 
 Enjoy! :heart:
