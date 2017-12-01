@@ -4,13 +4,11 @@ const minimatch = require("minimatch");
 const cwd = process.cwd();
 const format = require("./format");
 
-let mode = "markdown";
-let ignore = [".DS_Store"];
+let ignore = [];
 
 function indexme(filepath, opts = {}) {
-  opts.ignore = opts.ignore || [];
-  mode = opts.mode || mode;
-  ignore = ignore.concat(opts.ignore);
+  const mode = opts.mode || "markdown";
+  ignore = opts.ignore || [];
 
   if (!fs.existsSync(filepath)) {
     throw new Error("path doesn't exist: " + filepath);
