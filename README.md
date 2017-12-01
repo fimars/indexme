@@ -22,9 +22,14 @@ npm install indexme -g
 
 ### Recipes
 
-Index your markdown notes.
+**Index your markdown notes.**
 ```bash
-index notes -i README.md > notes/README.md
+➔ indexme notes -i README.md > notes/README.md
+```
+
+**Tree your node.js project.**
+```bash
+➔ indexme -i _*,.*,node_modules -m pure
 ```
 
 Enjoy! :heart:
