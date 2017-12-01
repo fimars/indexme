@@ -6,7 +6,7 @@ const transforms = {
       return `- ${path.basename(filepath)}`;
     },
     file: function(filepath) {
-      return `- [${path.basename(filepath)}](./${filepath})`;
+      return `- [${path.basename(filepath)}](${filepath})`;
     }
   },
   ["pure"]: {
