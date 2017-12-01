@@ -1,0 +1,14 @@
+{
+  "name": "indexme",
+  "version": "0.1.0",
+  "scripts": {
+    "test": "ava"
+  },
+  "devDependencies": {
+    "ava": "^0.24.0"
+  },
+  "dependencies": {
+    "commander": "^2.12.2",
+    "minimatch": "^3.0.4"
+  }
+}
