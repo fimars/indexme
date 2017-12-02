@@ -91,8 +91,8 @@ test("deep=1", t => {
   );
 });
 
-test("ingore", t => {
-  const res = indexme(resolve("./priv"), { ignore: ["inner*"] });
+test("ingore inner*", t => {
+  const res = indexme(resolve("./priv"), { ignore: ["inner*"], deep: 10 });
   t.deepEqual(
     res,
     `
@@ -100,6 +100,18 @@ test("ingore", t => {
   - [1.md](test/priv/1.md)
   - [2.md](test/priv/2.md)
   - [3.md](test/priv/3.md)
+`.trim()
+  );
+});
+
+test("ingore *.md", t => {
+  const res = indexme(resolve("./priv"), { ignore: ["*.md"], deep: 10 });
+  t.deepEqual(
+    res,
+    `
+- priv
+  - inner
+  - inner2
 `.trim()
   );
 });

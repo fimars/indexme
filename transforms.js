@@ -19,22 +19,11 @@ const transforms = {
   },
   ["tree"]: {
     uiversal: function(filepath, last) {
-      return `${last ? '└' : '├'}── ${basename(filepath)}`;
+      return `${last ? "└" : "├"}── ${basename(filepath)}`;
     },
-    prefix: '│   ',
-    prefix_last: '    '
-  },
-};
-
-function leftpadByDeep(n, fn) {
-  return function(filepath, deep, last) {
-    return `${leftpad(deep, n)}${fn(filepath, last)}`
+    leftpad: "│   ",
+    leftpad_at_end: "    "
   }
-}
-
-function leftpad(deep, n) {
-  return " ".repeat(deep * n);
-}
-
+};
 
 exports = module.exports = transforms;

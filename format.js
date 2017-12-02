@@ -10,51 +10,35 @@ function Formatter(mode) {
     this.transform_dir = transform.dir;
     this.transform_file = transform.file;
   }
-
-  this.prefix = transform.prefix || '  '
-  this.prefix_last = transform.prefix_last || '  '
+  const default_left_pad = "  ";
+  this.leftpad = transform.leftpad || default_left_pad;
+  this.leftpad_at_end = transform.leftpad_at_end || default_left_pad;
 }
 /**
  * Format glob object.
  * @param {Object, String} node
-*/
-Formatter.prototype.format = function(node, last = true, prefix = '') {
+ */
+Formatter.prototype.format = function(node, at_end = true, leftpad = "") {
   if (typeof node === "object") {
     let dirs = "";
-    dirs += prefix + this.transform_dir(node.path, last);
+    dirs += leftpad + this.transform_dir(node.path, at_end);
+
     if (node.children.length) {
       dirs += "\n";
-      dirs += node.children.map((node, idx, arr) => {
-        const node_last = idx === arr.length - 1
-        const prefix_next = last ? this.prefix_last : this.prefix
-        const res = this.format(node, node_last , prefix + prefix_next)
-        return res
-      }).join("\n");
+      dirs += node.children
+        .map((node, idx, arr) => {
+          const leftpad_next =
+            leftpad + (at_end ? this.leftpad_at_end : this.leftpad);
+          return this.format(node, idx === arr.length - 1, leftpad_next);
+        })
+        .join("\n");
     }
     return dirs;
   } else {
-    return prefix + this.transform_file(node, last);
+    return leftpad + this.transform_file(node, at_end);
   }
 };
 
 exports = module.exports = function format(glob, mode) {
   return new Formatter(mode).format(glob);
 };
-
-/**
- * [
- *  11,
- *  [11, 22],
- *  1122,
- *  [11, [22, 33], [44]]
- * ]
- * 
- * 11
- * - 11
- * - 22
- * 1122
- * - 11
- * - - 22
- * - - 33
- * - - 44
- */

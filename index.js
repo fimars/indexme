@@ -10,7 +10,7 @@ let max_deep = 2;
 function indexme(filepath, opts = {}) {
   const mode = opts.mode || "markdown";
   ignore = opts.ignore || [];
-  max_deep = opts.deep === void 0 ? 2 : opts.deep
+  max_deep = opts.deep === void 0 ? 2 : opts.deep;
 
   if (max_deep < 1) {
     throw new Error("[Index Me] max_deep < 1");
@@ -28,37 +28,43 @@ function indexme(filepath, opts = {}) {
  * @param {Number} deep=0
  * @return {Glob}
  */
-function glob(filepath, deep = 0) {
-  if (deep > max_deep || isIgnore(filepath)) {
+function glob(iopath, deep = 0) {
+  debugger;
+  if (deep > max_deep || is_ignore(iopath)) {
     return "";
   }
 
-  const lstat = fs.lstatSync(filepath);
+  const lstat = fs.lstatSync(iopath);
   if (lstat.isFile()) {
-    return glob_file(filepath);
+    return relative(iopath);
   } else if (lstat.isDirectory()) {
-    return glob_dir(filepath, deep);
+    return glob_dir(iopath, deep);
+  } else if (lstat.isSymbolicLink()) {
+    return relative(iopath) + " -> " + fs.readlinkSync(iopath);
   } else return "";
 }
 
-function glob_file(filepath) {
+function relative(filepath) {
   return path.relative(cwd, filepath) || filepath;
 }
 
 function glob_dir(dirpath, deep) {
   return {
-    path: glob_file(dirpath),
-    children: fs
-      .readdirSync(dirpath)
-      .filter(filepath => !isIgnore(filepath))
-      // TODO: filter soft link
-      .map(filepath => glob(path.join(dirpath, filepath), deep + 1))
-      // HACK: REMOVE ME LATER
-      .filter(s => s)
+    path: relative(dirpath),
+    children:
+      deep >= max_deep
+        ? []
+        : fs
+            .readdirSync(dirpath)
+            .filter(filepath => !is_ignore(filepath))
+            // TODO: filter soft link
+            .map(filepath => glob(path.join(dirpath, filepath), deep + 1))
+    // HACK: REMOVE ME LATER
+    // .filter(s => s)
   };
 }
 
-function isIgnore(filepath) {
+function is_ignore(filepath) {
   return ignore.some(ignorepath => minimatch(filepath, ignorepath));
 }
 
