@@ -5,6 +5,12 @@ Like windows-trees, but more format.
 ```bash
 npm install indexme -g
 ```
+
+### TL;DR
+```bash
+indexme
+```
+
 ### Useage
 ```bash
 ➔ indexme --help
@@ -23,6 +29,12 @@ npm install indexme -g
 ```
 
 ### Recipes
+
+**In terminal, quick open files.
+```
+➔ indexme -i node_modules,.git
+# Then click your file path, quick open your file.
+```
 
 **Index your markdown notes.**
 ```bash
