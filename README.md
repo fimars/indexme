@@ -30,7 +30,7 @@ indexme
 
 ### Recipes
 
-**In terminal, quick open files.
+**In terminal, quick open files.**
 ```
 ➔ indexme -i node_modules,.git
 # Then click your file path, quick open your file.
