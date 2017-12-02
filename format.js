@@ -10,26 +10,51 @@ function Formatter(mode) {
     this.transform_dir = transform.dir;
     this.transform_file = transform.file;
   }
+
+  this.prefix = transform.prefix || '  '
+  this.prefix_last = transform.prefix_last || '  '
 }
 /**
  * Format glob object.
  * @param {Object, String} node
- * @param {Number} deep
- */
-Formatter.prototype.format = function(node, deep = 0, last = true) {
+*/
+Formatter.prototype.format = function(node, last = true, prefix = '') {
   if (typeof node === "object") {
     let dirs = "";
-    dirs += this.transform_dir(node.path, deep, last);
+    dirs += prefix + this.transform_dir(node.path, last);
     if (node.children.length) {
       dirs += "\n";
-      dirs += node.children.map((node, idx, arr) => this.format(node, deep + 1, idx === arr.length - 1)).join("\n");
+      dirs += node.children.map((node, idx, arr) => {
+        const node_last = idx === arr.length - 1
+        const prefix_next = last ? this.prefix_last : this.prefix
+        const res = this.format(node, node_last , prefix + prefix_next)
+        return res
+      }).join("\n");
     }
     return dirs;
   } else {
-    return this.transform_file(node, deep, last);
+    return prefix + this.transform_file(node, last);
   }
 };
 
 exports = module.exports = function format(glob, mode) {
   return new Formatter(mode).format(glob);
 };
+
+/**
+ * [
+ *  11,
+ *  [11, 22],
+ *  1122,
+ *  [11, [22, 33], [44]]
+ * ]
+ * 
+ * 11
+ * - 11
+ * - 22
+ * 1122
+ * - 11
+ * - - 22
+ * - - 33
+ * - - 44
+ */
