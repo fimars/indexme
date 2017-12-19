@@ -1,8 +1,9 @@
 {
   "name": "indexme",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "author": "fimars <foru.fy@gmail.com>",
   "bin": "bin/index.js",
+  "repository": "fimars/indexme",
   "scripts": {
     "test": "ava"
   },
