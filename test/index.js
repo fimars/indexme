@@ -28,14 +28,14 @@ test("indexme here", t => {
     res,
     `
 - priv
-  - [1.md](test/priv/1.md)
-  - [2.md](test/priv/2.md)
-  - [3.md](test/priv/3.md)
   - inner
-    - [inner1.md](test/priv/inner/inner1.md)
-    - [inner2.md](test/priv/inner/inner2.md)
+    - [inner1.md](./test/priv/inner/inner1.md)
+    - [inner2.md](./test/priv/inner/inner2.md)
   - inner2
-    - [1.md](test/priv/inner2/1.md)
+    - [1.md](./test/priv/inner2/1.md)
+  - [1.md](./test/priv/1.md)
+  - [2.md](./test/priv/2.md)
+  - [3.md](./test/priv/3.md)
     `.trim()
   );
 });
@@ -46,14 +46,14 @@ test("pure mode", t => {
     res,
     `
 - priv/
-  1.md
-  2.md
-  3.md
   - inner/
     inner1.md
     inner2.md
   - inner2/
     1.md
+  1.md
+  2.md
+  3.md
     `.trim()
   );
 });
@@ -64,14 +64,14 @@ test("tree mode", t => {
     res,
     `
 └── priv
-    ├── 1.md
-    ├── 2.md
-    ├── 3.md
     ├── inner
     │   ├── inner1.md
     │   └── inner2.md
-    └── inner2
-        └── 1.md
+    ├── inner2
+    │   └── 1.md
+    ├── 1.md
+    ├── 2.md
+    └── 3.md
   `.trim()
   );
 });
@@ -82,11 +82,11 @@ test("deep=1", t => {
     res,
     `
 └── priv
+    ├── inner
+    ├── inner2
     ├── 1.md
     ├── 2.md
-    ├── 3.md
-    ├── inner
-    └── inner2
+    └── 3.md
     `.trim()
   );
 });
@@ -97,9 +97,9 @@ test("ingore inner*", t => {
     res,
     `
 - priv
-  - [1.md](test/priv/1.md)
-  - [2.md](test/priv/2.md)
-  - [3.md](test/priv/3.md)
+  - [1.md](./test/priv/1.md)
+  - [2.md](./test/priv/2.md)
+  - [3.md](./test/priv/3.md)
 `.trim()
   );
 });
