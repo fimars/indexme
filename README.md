@@ -1,5 +1,5 @@
 ## Index ME!
-Like windows-trees, but more format.
+Like tree command, but more format.
 
 ### Installtion
 ```bash
@@ -8,7 +8,8 @@ npm install indexme -g
 
 ### TL;DR
 ```bash
-indexme
+indexme # after install
+npx indexme # with npx
 ```
 
 ### Useage
