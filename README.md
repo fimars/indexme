@@ -8,8 +8,11 @@ npm install indexme -g
 
 ### TL;DR
 ```bash
-indexme # after install
-npx indexme # with npx
+# run after install
+indexme
+
+# or run with npx
+npx indexme
 ```
 
 ### Useage
